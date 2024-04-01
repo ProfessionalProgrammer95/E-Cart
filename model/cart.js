@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./user')
 
 const CartSchema = new mongoose.Schema({
     user:{
@@ -10,7 +11,7 @@ const CartSchema = new mongoose.Schema({
         default:[]
     }
 },{
-    collection:"carts",
+    collection:"cart",
     timestamps:true
 })
 

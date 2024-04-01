@@ -60,7 +60,18 @@ const readSingleProduct = async(req,res)=> {
 //update product
 const updateProduct = async(req,res)=> {
     try{
-        res.json({msg:" update product"})
+        //read router params
+        let id = req.params.id
+
+        //find the product by ref id
+        let data = await Product.findById(id)
+            if(!data)
+                return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`requested product id not found`})
+
+        //update
+        await Product.findByIdAndUpdate({_id: id}, req.body)
+
+        res.status(StatusCodes.ACCEPTED).json({status: true, msg:"Product update successfully"})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false, msg:err.message})
     }
@@ -68,7 +79,17 @@ const updateProduct = async(req,res)=> {
 //delete product
 const deleteProduct = async(req,res)=> {
     try{
-        res.json({msg:"delete product"})
+        //read router params
+        let id = req.params.id
+
+        //find the product by ref id
+        let data = await Product.findById(id)
+            if(!data)
+                return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`requested product id not found`})
+
+        //delete
+        await Product.findByIdAndDelete({_id: id})
+        res.status(StatusCodes.ACCEPTED).json({ status:true, msg:"Product deleted Successfully"})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false, msg:err.message})
     }
