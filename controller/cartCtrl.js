@@ -21,7 +21,8 @@ const createCart =async (req,res) => {
 //read all
 const allCart =async (req,res) => {
     try{
-        return res.json({msg:"all cart"})
+        let data =  await Cart.find({})
+        return res.status(StatusCodes.OK).json({status: true, length: data.length, carts:data})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})
     }
@@ -29,7 +30,14 @@ const allCart =async (req,res) => {
 //read single
 const singleCart =async (req,res) => {
     try{
-        return res.json({msg:"single cart"})
+        let id = req.params.id
+
+        let extCart = await Cart.findById(id)
+
+            if(!extCart)
+                 return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested cart id not found`})
+
+        return res.status(StatusCodes.OK).json({status:true, cart:extCart})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})
     }
@@ -37,7 +45,17 @@ const singleCart =async (req,res) => {
 //update
 const updateCart =async (req,res) => {
     try{
-        return res.json({msg:"update cart"})
+        //read router params
+        let id = req.params.id
+
+        let extCart = await Cart.findById(id)
+
+        if(!extCart)
+            return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested cart id not found`})
+
+        await Cart.findByIdAndUpdate({_id:id}, req.body)
+
+        return res.status(StatusCodes.ACCEPTED).json({status:true,msg:"cart updated successfully"})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})
     }
@@ -45,6 +63,16 @@ const updateCart =async (req,res) => {
 //delete
 const deleteCart =async (req,res) => {
     try{
+        let id = req.params.id
+
+        let extCart = await Cart.findById(id)
+
+        if(!extCart)
+            return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested cart id not found`})
+
+        await Cart.findByIdAndDelete({_id: id})
+
+        return res.status(StatusCodes.ACCEPTED).json({status:true,msg:"cart deleted successfully"})
         return res.json({msg:"delete cart"})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})

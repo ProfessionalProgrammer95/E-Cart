@@ -2,8 +2,8 @@ const cartRoute = require('express').Router()
 const {createCart, allCart, singleCart, updateCart,deleteCart} = require('../controller/cartCtrl')
 const auth = require('../middleware/auth')
 
-cartRoute.get(`/all`,auth, allCart)
-cartRoute.get(`/single/:id`,auth, singleCart)
+cartRoute.get(`/all`, allCart)
+cartRoute.get(`/single/:id`, singleCart)
 
 cartRoute.post(`/add`,auth,createCart)
 cartRoute.patch(`/update/:id`,auth, updateCart)
