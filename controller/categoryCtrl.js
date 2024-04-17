@@ -46,6 +46,7 @@ const readSingleCategory = async (req,res) => {
         //if  id not found
         if(!data)
             return res.status(StatusCodes.NOT_FOUND).json({status: false, msg: "Requested category id not found"})
+        
         res.status(StatusCodes.OK).json({status:true, category:data})
     } catch(err) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false, msg:err.message})

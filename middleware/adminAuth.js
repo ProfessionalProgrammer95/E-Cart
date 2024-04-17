@@ -14,7 +14,7 @@ const adminAuth = async (req,res,next) => {
 
         // check the role
         if(extUser.role !== "superadmin")
-            return res.status(StatusCodes.UNAUTHORIZED).json({status:false, msg:`unAuthorized.Access denied for non-admin users`})
+            return res.status(StatusCodes.UNAUTHORIZED).json({status:false, msg:`unAuthorized. Access denied for non-admin users`})
        
         //continue execution to next controller
         next()

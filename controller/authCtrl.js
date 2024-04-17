@@ -11,7 +11,7 @@ const register = async(req,res) => {
         //read the data
         const {name, email, mobile,password,role} = req.body
 
-        //check wheathe user email and mobile registered or not
+        //check wheather user email and mobile registered or not
         let extEmail = await UserModel.findOne({email})
             if (extEmail)
                 return res.status(StatusCodes.CONFLICT).json({status:false, msg:`${email} is already exists`})

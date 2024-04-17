@@ -10,6 +10,16 @@ import Register from './Pages/Register'
 import Pnf from './Pages/Pnf'
 import Dashboard from './Pages/Dashboard/Dashboard'
 import PrivateRoute from './PrivateRouter/PrivateRoute'
+import UserDashboard from './Pages/Dashboard/User/UserDashboard'
+import AdminDashboard from './Pages/Dashboard/Admin/AdminDashboard'
+import AdminProducts from './Pages/Dashboard/Admin/Products/AdminProducts'
+import AdminOrders from './Pages/Dashboard/Admin/Orders/AdminOrders'
+import AdminCategories from './Pages/Dashboard/Admin/Categories/AdminCategories'
+import AdminUsers from './Pages/Dashboard/Admin/Users/AdminUsers'
+import NewProduct from './Pages/Dashboard/Admin/Products/NewProduct'
+import ProductsHome from './Pages/Dashboard/Admin/Products/ProductsHome'
+import ProductDetail from './Pages/Dashboard/Admin/Products/ProductDetail'
+import UpdateProduct from './Pages/Dashboard/Admin/Products/UpdateProduct'
 
 function App() {
   return (
@@ -19,10 +29,25 @@ function App() {
         <Routes>
           
           <Route element={<PrivateRoute/>}>
-              <Route path={`/dashboard`} element={<Dashboard/>}></Route>
+              <Route path={`/dashboard`} element={<Dashboard/>}>
+                <Route path={`user`} element={<UserDashboard/>}/>
+                <Route path={`superadmin`} element={<AdminDashboard/>}>
+                  <Route path={`products`} element={<AdminProducts/>}/>
+                  <Route path={`products/new`} element={<NewProduct/>}/>
+                  <Route path={`products/update/:id`} element={<UpdateProduct/>}/>
+
+                  <Route path={`orders`} element={<AdminOrders/>}/>
+                  <Route path={`categories`} element={<AdminCategories/>}/>
+                  <Route path={`users`} element={<AdminUsers/>}/>
+                </Route>
+              </Route>
           </Route>         
 
-          <Route path={`/`} element={<Home/>}/>
+          <Route path={`/`} element={<Home/>}>
+            <Route path={`/`} element={<ProductsHome/>}/>
+            <Route path={`/product/:id`} element={<ProductDetail/>}/>
+          </Route>
+
           <Route path={`/about`} element={<About/>}/>
           <Route path={`/contact`} element={<Contact/>}/>
           <Route path={`/login`} element={<Login/>}/>

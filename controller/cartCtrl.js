@@ -37,7 +37,7 @@ const singleCart =async (req,res) => {
             if(!extCart)
                  return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested cart id not found`})
 
-        return res.status(StatusCodes.OK).json({status:true, cart:extCart})
+        return res.status(StatusCodes.OK).json({status:true, cart: extCart})
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})
     }
@@ -73,7 +73,7 @@ const deleteCart =async (req,res) => {
         await Cart.findByIdAndDelete({_id: id})
 
         return res.status(StatusCodes.ACCEPTED).json({status:true,msg:"cart deleted successfully"})
-        return res.json({msg:"delete cart"})
+        
     }catch(err){
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status:false,msg:err.message})
     }

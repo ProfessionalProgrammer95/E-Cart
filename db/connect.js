@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const dbConnect = async () => {
+    //local db -> made is development
     if(process.env.MODE === "development") {
         await mongoose.connect(process.env.MONGO_DEV)
         .then(res => {
