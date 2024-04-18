@@ -6,7 +6,7 @@ function AdminCategories() {
   const [categories,setCategories] = useState([])
   const [isEdit,setIdEdit] = useState("new") //new category  = new, edit category = edit
 
-  //state
+  //state => new, edit
   const[category,setCategory] = useState({
     name:"",
     desc:""
@@ -149,6 +149,7 @@ function AdminCategories() {
           </div>
         </div>
       </div>
+      {/* end modal */}
     </div>
   )
 }

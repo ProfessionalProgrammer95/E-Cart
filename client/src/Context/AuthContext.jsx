@@ -6,7 +6,11 @@ export const AuthContext = createContext()
 
 //auth provider component
 function AuthProvider(props) {
+
   //token
+  
+  // const [token,setToken] = useState(false) // production state
+
   const [token,setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : false) //only dev 
 
   //login status => if login = true, if logout = false
@@ -34,9 +38,6 @@ function AuthProvider(props) {
     })
   }
 
-
-
-
   useEffect(() => {
     if(token) {
       axios.defaults.headers.common["Authorization"] = token
@@ -47,6 +48,7 @@ function AuthProvider(props) {
   },[token])
 
   const contextToken = useMemo(() => ({
+    //mount stage => initial state
     token,
     login,
     currentUser

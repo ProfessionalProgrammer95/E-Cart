@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
     },
     dob:{
         type:Date,
-        default:new  Date().toString()
+        default:new Date().toString()
     },
     role:{
         type:String,

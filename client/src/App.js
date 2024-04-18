@@ -17,8 +17,8 @@ import AdminOrders from './Pages/Dashboard/Admin/Orders/AdminOrders'
 import AdminCategories from './Pages/Dashboard/Admin/Categories/AdminCategories'
 import AdminUsers from './Pages/Dashboard/Admin/Users/AdminUsers'
 import NewProduct from './Pages/Dashboard/Admin/Products/NewProduct'
-import ProductsHome from './Pages/Dashboard/Admin/Products/ProductsHome'
-import ProductDetail from './Pages/Dashboard/Admin/Products/ProductDetail'
+import ProductsHome from './Pages/Products/ProductsHome'
+import ProductDetail from './Pages/Products/ProductDetail'
 import UpdateProduct from './Pages/Dashboard/Admin/Products/UpdateProduct'
 
 function App() {

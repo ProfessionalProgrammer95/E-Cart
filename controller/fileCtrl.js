@@ -19,7 +19,7 @@ const uploadImage = async (req,res) => {
           if(!extPro)
             res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested product id not found`})
         
-        //create weather upload folder exist or not
+        //check weather upload folder exist or not
         let outPath =path.join(__dirname, "../client/public/uploads")
             if(!fs.existsSync(outPath)) {
                 // if folder is not present create a new folder
@@ -76,8 +76,10 @@ const deleteImage =async (req,res) => {
           if(!extPro)
             res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`Requested product id not found`})
 
+            //whether file exists or not
+
         //file already exists in the location or not
-        let filePath = path.join(__dirname, "../client/public/uploads", `${extPro.image.name}`)
+        let filePath = path.join(__dirname, "../client/public/uploads", `${extPro.image}`)
         if(!fs.existsSync(filePath)) {
             return res.status(StatusCodes.NOT_FOUND).json({status:false, msg:`File not exists.`})
         }
@@ -87,7 +89,7 @@ const deleteImage =async (req,res) => {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({status: false, msg:err})
 
         //update the product collection
-        await Product.findByIdAndUpdate({ _id: product }, {image:  "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"})
+        await Product.findByIdAndUpdate({ _id: product }, {image:  ""})
 
         return res.status(StatusCodes.ACCEPTED).json({ status: true, msg: `File deleted successfully`})
 

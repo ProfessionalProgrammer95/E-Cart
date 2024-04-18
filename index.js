@@ -41,10 +41,6 @@ app.use(`/api/file`, require('./route/fileRoute'))
 app.use(`/api/user`, require('./route/userRoute'))
 
 
-
-
-
-
 //default route
 app.all(`/*`, async (req,res) => {
     return res.status(StatusCodes.NOT_FOUND).json({status:true, msg:"Requested path not found"})

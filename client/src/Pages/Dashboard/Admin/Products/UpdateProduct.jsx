@@ -71,7 +71,7 @@ function UpdateProduct() {
                 setLoading(false)
                 toast.success(res.data.msg)
                 setImage(res.data.file)
-
+                window.location.reload()
             }).catch(err=> {
                 toast.error(err.response.data.msg)
                 setLoading(false)
@@ -154,14 +154,16 @@ function UpdateProduct() {
                                 }
                              </label>
                         ) : (
-                            <div className="card d-flex justify-content-center">
+                            <div className="card position-relative">
+                                <button onClick={deleteImage} className="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle">
+                                    <i className="bi bi-x-circle"></i>
+                                </button>
                                 <img src={image ? `/uploads/${image}` : ''} alt="no pic" className="card-img-top" style={{ width:'45%'}} />
                             </div>
                         )
-                   }
-                
-                   
+                   }        
                 </div>
+
             </div>
             <div className="col-md-6">
                 <div className="form-group mt-2">
@@ -194,7 +196,7 @@ function UpdateProduct() {
                     <input type="number" name="discount" value={discount} onChange={(e) => setDiscount(e.target.value)} id="discount" className='form-control' required />
                 </div>
                 <div className='form-group mt-2'>
-                    <button className='btn btn-success'>Update Product</button>
+                    <button onClick={submitHandler} className='btn btn-success'>Update Product</button>
                 </div>
             </div>
         </div>
